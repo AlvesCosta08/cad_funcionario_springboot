@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123     # Define a senha do usuário root
+      MYSQL_DATABASE: cadastro          # Nome do banco de dados a ser criado
+      MYSQL_USER: alves                       # Nome do usuário adicional
+      MYSQL_PASSWORD: 123          # Senha para o usuário adicional
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:
+
+networks:
+  mysql_network:
+    driver: bridge
